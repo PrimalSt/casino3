@@ -1,0 +1,8 @@
+# Токен, полученный от BotFather
+TELEGRAM_TOKEN = "7894585413:AAE7CjTQxDTJXthlTnEs89YvTOkfn-Wg9uo"
+
+# Строка подключения к PostgreSQL (можно будет заменить на реальные данные при деплое)
+DATABASE_URL = "postgresql://casibodb_lpd5_user:52Jt9xPZTvn0YMoZvs0OEKH7SHKdOdfh@dpg-cufp80qj1k6c73fssvng-a.oregon-postgres.render.com/casibodb_lpd5"
+
+# URL веб-приложения, которое будет открываться внутри Telegram (на Render этот URL будет действительным)
+WEBAPP_URL = "https://your-render-app.onrender.com/"
