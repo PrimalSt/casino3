@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Мини-Казино</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1>Мини-Казино</h1>
+    <p id="balance">Баланс: Загружается...</p>
+    <button id="play-btn" class="btn btn-primary">Играть</button>
+    <p id="result"></p>
+  </div>
+  <script>
+    // Попытка получить данные, переданные через Telegram Web App
+    let telegramData;
+    try {
+      telegramData = JSON.parse(window.Telegram.WebApp.initData);
+    } catch (e) {
+      console.error("Ошибка парсинга initData:", e);
+      telegramData = {};
+    }
+
+    document.getElementById('play-btn').addEventListener('click', function () {
+      fetch('/api/play', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ telegramData: telegramData })
+      })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('result').innerText = data.message;
+          document.getElementById('balance').innerText = "Баланс: " + data.balance.toFixed(2);
+        })
+        .catch(error => console.error('Ошибка:', error));
+    });
+  </script>
+</body>
+
+</html>
